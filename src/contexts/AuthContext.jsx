@@ -70,7 +70,7 @@ const mockLoginAPI = async (email, password) => {
   // Simulate API delay
   await new Promise(resolve => setTimeout(resolve, 1000));
   
-  if (email === 'test@example.com' && password === 'password') {
+  if (email === 'test@example.com' && password === 'Password') {
     return {
       user: {
         id: '1',
