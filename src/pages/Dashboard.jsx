@@ -5,14 +5,14 @@ import { Container } from '@/components/layout/Container';
 import { Grid } from '@/components/layout/Grid';
 import { Stack } from '@/components/layout/Stack';
 import { Section } from '@/components/layout/Section';
-import { Card, CardHeader, CardContent } from '@/components/ui/card';
+import { Card, CardHeader, CardContent, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Book, Trophy, Bell, MessageCircle, ChevronRight, Calendar, CheckCircle } from 'lucide-react';
 import { LiveChat } from '@/components/chat/LiveChat';
-import { LiveLeaderboard } from '@/components/leaderboard/LiveLeaderboard';
 
-export const Dashboard = () => {
-  // Sample data (same as before)
+// Change the export to be a default export
+export default function Dashboard() {
+  // Sample data
   const announcements = [
     {
       id: 1,
@@ -35,34 +35,17 @@ export const Dashboard = () => {
     completedBooks: 3
   };
 
-  const recentActivity = [
-    {
-      id: 1,
-      type: 'reading',
-      content: 'Completed reading Psalms 23',
-      timestamp: '2 hours ago'
-    },
-    {
-      id: 2,
-      type: 'achievement',
-      content: 'Earned "7-day streak" badge',
-      timestamp: '1 day ago'
-    }
-  ];
-
   return (
     <MainLayout>
       <Container>
         <Stack spacing={6}>
+          {/* Welcome Section */}
           <Section
             title="Welcome Back!"
             description="Track your Bible reading progress and connect with the community."
           />
-          <LiveChat />
-        
-          {/* Progress Stats */}
 
-          <LiveLeaderboard />
+          {/* Stats Overview */}
           <Grid cols={4} gap={4}>
             <StatCard
               icon={<Book className="h-6 w-6 text-blue-600" />}
@@ -90,66 +73,34 @@ export const Dashboard = () => {
             />
           </Grid>
 
-          {/* Main Content */}
-          <Grid cols={3} gap={6}>
-            {/* Announcements */}
-            <Card className="col-span-2">
-              <CardHeader>
-                <div className="flex items-center">
-                  <Bell className="h-5 w-5 text-indigo-500 mr-2" />
-                  <h3 className="text-lg font-medium">Recent Announcements</h3>
-                </div>
-              </CardHeader>
-              <CardContent>
-                <Stack spacing={4}>
-                  {announcements.map((announcement) => (
-                    <div key={announcement.id} className="border-b pb-4 last:border-b-0">
-                      <h4 className="font-medium text-gray-900">{announcement.title}</h4>
-                      <p className="mt-1 text-sm text-gray-500">{announcement.content}</p>
-                      <p className="mt-1 text-xs text-gray-400">{announcement.date}</p>
-                    </div>
-                  ))}
-                </Stack>
-              </CardContent>
-            </Card>
-
-            {/* Recent Activity */}
-            <Card>
-              <CardHeader>
-                <div className="flex items-center">
-                  <MessageCircle className="h-5 w-5 text-indigo-500 mr-2" />
-                  <h3 className="text-lg font-medium">Recent Activity</h3>
-                </div>
-              </CardHeader>
-              <CardContent>
-                <Stack spacing={4}>
-                  {recentActivity.map((activity) => (
-                    <div key={activity.id} className="flex items-center justify-between">
-                      <div className="flex items-center">
-                        {activity.type === 'reading' ? (
-                          <Book className="h-5 w-5 text-blue-500 mr-2" />
-                        ) : (
-                          <Trophy className="h-5 w-5 text-yellow-500 mr-2" />
-                        )}
-                        <div>
-                          <p className="text-sm text-gray-900">{activity.content}</p>
-                          <p className="text-xs text-gray-400">{activity.timestamp}</p>
-                        </div>
-                      </div>
-                      <Badge variant={activity.type === 'reading' ? 'info' : 'success'}>
-                        {activity.type}
-                      </Badge>
-                    </div>
-                  ))}
-                </Stack>
-              </CardContent>
-            </Card>
-          </Grid>
+          {/* Announcements Section */}
+          <Card>
+            <CardHeader>
+              <CardTitle className="flex items-center">
+                <Bell className="h-5 w-5 mr-2 text-indigo-500" />
+                Announcements
+              </CardTitle>
+            </CardHeader>
+            <CardContent>
+              <Stack spacing={4}>
+                {announcements.map((announcement) => (
+                  <div key={announcement.id} className="border-b pb-4 last:border-b-0">
+                    <h3 className="font-medium text-gray-900">{announcement.title}</h3>
+                    <p className="mt-1 text-sm text-gray-500">{announcement.content}</p>
+                    <p className="mt-1 text-xs text-gray-400">{announcement.date}</p>
+                  </div>
+                ))}
+              </Stack>
+            </CardContent>
+          </Card>
         </Stack>
       </Container>
+
+      {/* Live Chat */}
+      <LiveChat />
     </MainLayout>
   );
-};
+}
 
 // Helper component for stats
 const StatCard = ({ icon, label, value, bgColor }) => (

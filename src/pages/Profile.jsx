@@ -1,5 +1,5 @@
 // src/pages/Profile.jsx
-import React from 'react';
+import React, { useState } from 'react';
 import { MainLayout } from '@/layouts/MainLayout';
 import { Container } from '@/components/layout/Container';
 import { Stack } from '@/components/layout/Stack';
