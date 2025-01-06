@@ -1,6 +1,7 @@
 // src/layouts/MainLayout.jsx
 import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import { Footer } from '@/components/layout/Footer';
 import { Book, User, LogOut, Settings, Menu } from 'lucide-react';
 import { useAuth } from '@/contexts/AuthContext';
 
@@ -115,6 +116,7 @@ export const MainLayout = ({ children }) => {
 
       {/* Main content */}
       <main className="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">{children}</main>
+      <Footer />
     </div>
   );
 };

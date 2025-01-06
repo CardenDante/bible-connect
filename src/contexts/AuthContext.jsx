@@ -75,7 +75,7 @@ const mockLoginAPI = async (email, password) => {
       user: {
         id: '1',
         email: 'test@example.com',
-        name: 'Test User',
+        name: 'Daniel Chacha',
         role: 'user'
       }
     };
