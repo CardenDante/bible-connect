@@ -144,7 +144,7 @@ function Landing() {
             {/* Right Content - Hero Image */}
             <div className="w-full lg:w-1/2">
               <img
-                src="https://placehold.co/800x600/indigo/white/png?text=Bible+Connect+App"
+                src="/orig.webp"
                 alt="App screenshot"
                 className="w-full rounded-2xl shadow-xl"
               />
